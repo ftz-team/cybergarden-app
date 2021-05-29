@@ -50,6 +50,7 @@ class NavigatorState extends State<AppNavigator> with TickerProviderStateMixin {
           ),
         ),
       body: PageView(
+
         controller: navController,
         physics: NeverScrollableScrollPhysics(),
         onPageChanged: (int) {
@@ -62,7 +63,7 @@ class NavigatorState extends State<AppNavigator> with TickerProviderStateMixin {
       bottomNavigationBar: BottomAppBar(
 
         shape: CircularNotchedRectangle(),
-        notchMargin: width*0.01,
+        notchMargin: width*0.11,
 
         color: UIColors.background,
         child: Container(
