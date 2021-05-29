@@ -1,6 +1,7 @@
 import 'package:cybergarden_app/UI/configs/UIConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'UI/containers/Auth/RegisterPage.dart';
 import 'UI/containers/LoadingScreen.dart';
@@ -41,8 +42,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   Future<bool> init() async{
-    final storage = new FlutterSecureStorage();
-    var token = await storage.read(key: "USER_TOKEN");
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = (prefs.getString('USER_TOKEN') ?? null);
+    print(token);
 
     if (null == token){
       return false;
@@ -51,6 +53,10 @@ class _MyHomePageState extends State<MyHomePage> {
     if (!res){
       return false;
     }
+
+    final storage = new FlutterSecureStorage();
+    await storage.write(key: "USER_TOKEN", value: token);
+
     return true;
   }
 

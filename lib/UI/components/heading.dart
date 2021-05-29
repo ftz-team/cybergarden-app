@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget defaultHeader(String text,[FontWeight fontWeight = FontWeight.bold, Color color = Colors.white] ){
+Widget defaultHeader(String text,{FontWeight fontWeight = FontWeight.bold, Color color = Colors.white, TextAlign textAlign = TextAlign.left} ){
   return Text(
     text,
     style: TextStyle(
@@ -9,5 +9,6 @@ Widget defaultHeader(String text,[FontWeight fontWeight = FontWeight.bold, Color
         fontSize: 24,
         fontWeight: fontWeight
     ),
+      textAlign :textAlign
   );
 }

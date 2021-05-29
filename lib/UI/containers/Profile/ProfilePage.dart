@@ -4,6 +4,8 @@ import 'package:cybergarden_app/UI/configs/helpers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'AchievementsPage.dart';
+
 class ProfilePage extends StatefulWidget {
   ProfilePageState createState() => ProfilePageState();
 }
@@ -101,7 +103,18 @@ class ProfilePageState extends State<ProfilePage> {
                     context,
                     icon :Icons.hiking_outlined,
                     text: "История посещений"
+                ),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, new CupertinoPageRoute(builder: (context)=>AchivementsPage()));
+                  },
+                  child: menuItem(
+                      context,
+                      icon :Icons.scatter_plot_outlined,
+                      text: "Достижения"
+                  ),
                 )
+
               ],
             )));
   }

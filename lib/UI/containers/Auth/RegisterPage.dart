@@ -15,7 +15,11 @@ class RegisterPage extends StatefulWidget {
 
 class RegisterPageState extends State<RegisterPage> {
 
-  final snackBar = SnackBar(content: Text('Проверьте правильность введенного номера.', style: TextStyle(color: Colors.white),), backgroundColor: UIColors.background,);
+  final NumberController = TextEditingController();
+
+  final snackBar = SnackBar(
+    content: Text('Проверьте правильность введенного номера.', style: TextStyle(color: Colors.white),), backgroundColor: UIColors.darkenBackground,
+  );
 
   goNext(BuildContext context, int phone) async {
     var value = await sendCode(phone);
@@ -27,6 +31,7 @@ class RegisterPageState extends State<RegisterPage> {
                 phone: phone,
               )));
     }else{
+      print("!!!!");
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
@@ -108,6 +113,7 @@ class RegisterPageState extends State<RegisterPage> {
                                 child:  Container(
                                   width: 100,
                                   child: new TextField(
+                                    controller: NumberController,
                                     decoration: new InputDecoration(
                                       border: InputBorder.none,
                                       focusedBorder: InputBorder.none,
@@ -154,7 +160,7 @@ class RegisterPageState extends State<RegisterPage> {
                           textAlign: TextAlign.center,
                         ),
                         onPressed: () {
-                          goNext(context, 2);
+                          goNext(context, int.parse(NumberController.text));
                         }),
                   )
                 ],

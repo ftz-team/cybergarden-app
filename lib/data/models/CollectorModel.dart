@@ -9,6 +9,7 @@ class CollectorModel{
   final PointModel point;
   final Map contact;
   final int visited_cnt;
+  bool liked;
 
 
   CollectorModel.fromJson(Map json) :
@@ -16,8 +17,12 @@ class CollectorModel{
       name = json['name'],
       photo = json['photo'],
       description = json['description'],
-      point = PointModel.fromJson(json['point']),
+      point = PointModel.fromJson({
+        "lat" : json['lat'],
+        "long": json['long']
+      }),
       contact = json['contact'],
-      visited_cnt = json['visited_cnt'];
+      visited_cnt = json['visited_count'],
+      liked = json['liked'];
 
 }

@@ -2,6 +2,7 @@ import 'package:cybergarden_app/UI/components/buttons.dart';
 import 'package:cybergarden_app/UI/components/heading.dart';
 import 'package:cybergarden_app/UI/configs/UIConfig.dart';
 import 'package:cybergarden_app/UI/configs/helpers.dart';
+import 'package:cybergarden_app/data/repository/authApi.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,11 +19,30 @@ class RecieveCodePageState extends State<RecieveCodePage>{
 
   int phone;
   RecieveCodePageState({required this.phone});
+  final SmsController = TextEditingController();
+  final NumberController = TextEditingController();
+  final snackBar = SnackBar(
+    content: Text('Введите код из смс.', style: TextStyle(color: Colors.white),), backgroundColor: UIColors.darkenBackground,
+  );
 
-  goNext(BuildContext context){
-
-    Navigator.pushReplacement(context, new CupertinoPageRoute(builder: (context) => AppNavigator()));
+  goNext(BuildContext context) async {
+    var res = await cofirmCode(int.parse(SmsController.text), phone);
+    if (!res['ok']){
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }else {
+      Navigator.pushReplacement(context,
+          new CupertinoPageRoute(builder: (context) => AppNavigator()));
+    }
   }
+
+
+  @override
+  void initState(){
+    NumberController.text = phone.toString();
+
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -101,6 +121,8 @@ class RecieveCodePageState extends State<RecieveCodePage>{
                                 child:  Container(
                                   width: 100,
                                   child: new TextField(
+                                    enabled: false,
+                                    controller: NumberController,
                                     decoration: new InputDecoration(
                                       border: InputBorder.none,
                                       focusedBorder: InputBorder.none,
@@ -149,6 +171,7 @@ class RecieveCodePageState extends State<RecieveCodePage>{
                               top: 7
                             ),
                             child: new TextField(
+                              controller: SmsController,
                               decoration: new InputDecoration(
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:cybergarden_app/UI/components/BottomSheets/CollectorBottomSheet.dart';
-import 'package:cybergarden_app/UI/components/CategoryCard.dart';
+import 'package:cybergarden_app/UI/components/cards/CategoryCard.dart';
 import 'package:cybergarden_app/UI/components/buttons.dart';
 import 'package:cybergarden_app/UI/configs/UIConfig.dart';
 import 'package:cybergarden_app/UI/configs/helpers.dart';
@@ -22,15 +22,20 @@ class MapPage extends StatefulWidget {
 }
 
 class MapPageState extends State<MapPage> {
-
   List<CollectorModel> collectors = [];
   late StreamSubscription _subscription;
-  final List filters = ["Все", "Сбор бумаги", "Сбор батареек"];
+  final List filters = [
+    'Все',
+    'Для пластика',
+    'Для стекла',
+    'Для бумаги',
+    'Для батареек'
+  ];
   Set<Marker> _markers = {};
   int activeId = -1;
   bool openedFilters = false;
 
-  toogleOpened(){
+  toogleOpened() {
     this.setState(() {
       openedFilters = !openedFilters;
     });
@@ -42,7 +47,6 @@ class MapPageState extends State<MapPage> {
   Location _location = Location();
 
   void onMarkerTap(CollectorModel collector) {
-
     mapController.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
@@ -55,18 +59,20 @@ class MapPageState extends State<MapPage> {
       init();
     });
     Future.delayed(const Duration(milliseconds: 1500), () {
-    showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(125.0),
-        ),
-        builder: (context){
-       return CollectorBottomSheet(context,collector);
-    });});
-        }
+      showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(125.0),
+          ),
+          builder: (context) {
+            return CollectorBottomSheet(context, collector);
+          });
+    });
+  }
 
   void init() async {
+    _markers.clear();
     var pinLocationIcon = await BitmapDescriptor.fromAssetImage(
         ImageConfiguration(devicePixelRatio: 2.5),
         'assets/collectorMarket.png');
@@ -78,7 +84,9 @@ class MapPageState extends State<MapPage> {
       _markers.add(Marker(
           markerId: MarkerId(collectorModel.id.toString()),
           position: LatLng(collectorModel.point.lat, collectorModel.point.long),
-          icon: activeId == collectorModel.id? pinLocationIconActive:pinLocationIcon,
+          icon: activeId == collectorModel.id
+              ? pinLocationIconActive
+              : pinLocationIcon,
           onTap: () {
             onMarkerTap(collectorModel);
           }));
@@ -117,7 +125,6 @@ class MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
-    collectorsBloc.setActive(0);
     return Scaffold(
       backgroundColor: UIColors.background,
       appBar: AppBar(
@@ -146,7 +153,6 @@ class MapPageState extends State<MapPage> {
       ),
       body: Stack(
         children: [
-
           GoogleMap(
             onMapCreated: _onMapCreated,
             markers: _markers,
@@ -157,89 +163,87 @@ class MapPageState extends State<MapPage> {
             myLocationEnabled: true,
           ),
           Positioned(
-            top: 10,
-            left: 10,
-            height: 33,
-            width: displayWidth(context),
-            child:
-                   ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(
-                            right: 10
-                        ),
-                        child: openedFilters?MiniGradientButton(
+              top: 10,
+              left: 10,
+              height: 33,
+              width: displayWidth(context),
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(right: 10),
+                    child: openedFilters || activeId > 0
+                        ? MiniGradientButton(
                             child: Text(
                               "Фильтры",
                               style: TextStyle(
                                 color: Colors.white,
-
                               ),
                             ),
-                            onPressed: (){
+                            onPressed: () {
                               this.setState(() {
                                 toogleOpened();
                               });
-                            }
-                        ):SecondaryButton(
+                            })
+                        : SecondaryButton(
                             child: Text(
                               "Фильтры",
                               style: TextStyle(
                                 color: Colors.white,
-
                               ),
                             ),
-                            onPressed: (){
+                            onPressed: () {
                               this.setState(() {
                                 toogleOpened();
                               });
-                            }
+                            }),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(right: 10),
+                    child: SecondaryButton(
+                        child: Text(
+                          "Только избранные",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(
-                            right: 10
-                        ),
-                        child: SecondaryButton(
-                            child: Text(
-                              "Только избранные",
-                              style: TextStyle(
-                                color: Colors.white,
-
-                              ),
-                            ),
-                            onPressed: (){}
-                        ),
-                      )
-                    ],
+                        onPressed: () {}),
                   )
-          ),
+                ],
+              )),
           Positioned(
-            top: 50,
+            top: 60,
             left: 10,
             height: 33,
             width: displayWidth(context),
             child: StreamBuilder(
               stream: collectorsBloc.activeFilter,
               builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                if (snapshot.hasData){
+                if (snapshot.hasData) {
                   return ListView(
                     scrollDirection: Axis.horizontal,
-                    children:openedFilters ?  [
-                      for (var filterName in filters) GestureDetector(
-                      onTap : (){
-                        collectorsBloc.setActive(filters.indexOf(filterName));
-                      },
-                      child:   CategoryCard(name: filterName, active: snapshot.data == filters.indexOf(filterName))
-                  )
-                    ]:[],
+                    children: openedFilters
+                        ? [
+                            for (var filterName in filters)
+                              CategoryCard(
+                                name: filterName,
+                                active: snapshot.data ==
+                                    filters.indexOf(filterName),
+                                onPressed: () {
+
+                                  collectorsBloc
+                                      .setActive(filters.indexOf(filterName));
+
+                                },
+                              )
+                          ]
+                        : [],
                   );
                 }
                 return SizedBox();
               },
             ),
-          ) ,
+          ),
         ],
       ),
     );
@@ -247,7 +251,7 @@ class MapPageState extends State<MapPage> {
 
   @override
   void dispose() {
-    _subscription.cancel(); // don't forget to close subscription
+    _subscription.cancel();
     super.dispose();
   }
 }

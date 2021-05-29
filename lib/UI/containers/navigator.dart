@@ -86,7 +86,7 @@ class NavigatorState extends State<AppNavigator> with TickerProviderStateMixin {
                       onTap: (){
                         navController.jumpToPage(0);
                       },
-                      child: 0!=active?NavItem("assets/home.svg" ,):NavItem.active("assets/images/navbarIcons/home.svg" , ),
+                      child: 0!=active?NavItem("assets/home.svg" ,):NavItem.active("assets/home.svg" , ),
                     ),
 
                     GestureDetector(

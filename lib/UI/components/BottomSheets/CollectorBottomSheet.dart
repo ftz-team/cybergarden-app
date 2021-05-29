@@ -2,15 +2,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cybergarden_app/UI/components/heading.dart';
 import 'package:cybergarden_app/UI/configs/UIConfig.dart';
 import 'package:cybergarden_app/UI/configs/helpers.dart';
+import 'package:cybergarden_app/data/bloc/CollectorsBloc.dart';
 import 'package:cybergarden_app/data/models/CollectorModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../CollectorCard.dart';
+import '../cards/CollectorCard.dart';
 import '../buttons.dart';
 
 Widget CollectorBottomSheet(BuildContext context, CollectorModel collector) {
   double height = displayHeight(context);
+  collectorsBloc.loadCollectors();
   return Container(
 
     child: new Container(
@@ -29,6 +31,7 @@ Widget CollectorBottomSheet(BuildContext context, CollectorModel collector) {
           ),
           CollectorImage(
             image_url: collector.photo,
+
           ),
           Container(
             margin: EdgeInsets.only(bottom: 10, top: 10),
@@ -50,6 +53,10 @@ Widget CollectorBottomSheet(BuildContext context, CollectorModel collector) {
           ),
 
           Container(
+            margin: EdgeInsets.only(
+              top: 10,
+              bottom: 10
+            ),
               child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -68,11 +75,30 @@ Widget CollectorBottomSheet(BuildContext context, CollectorModel collector) {
                     padding: EdgeInsets.all(20),
                   ),
                   onPressed: () {}),
-              InkWell(
-                child: new Icon(
-                  Icons.favorite_border,
-                  color: UIIconColors.active,
-                ),
+              StreamBuilder(
+                stream: collectorsBloc.collectors,
+                builder: (BuildContext context, AsyncSnapshot<List<CollectorModel>> snapshot){
+                  if (snapshot.hasData) {
+                    bool liked = false;
+                    for (var i in snapshot.data!){
+                      if (i.id == collector.id){
+                        liked = i.liked;
+                        break;
+                      }
+                    }
+                    return InkWell(
+                      onTap: () {
+                        collectorsBloc.likeCollector(collector);
+                      },
+                      child: new Icon(
+                        liked ? Icons.favorite : Icons
+                            .favorite_border,
+                        color: UIIconColors.active,
+                      ),
+                    );
+                  }
+                  return SizedBox();
+                },
               )
             ],
           )),

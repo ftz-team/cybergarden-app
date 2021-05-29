@@ -1,4 +1,4 @@
-import 'package:cybergarden_app/UI/components/CollectorCard.dart';
+import 'package:cybergarden_app/UI/components/cards/CollectorCard.dart';
 import 'package:cybergarden_app/UI/components/heading.dart';
 import 'package:cybergarden_app/UI/configs/UIConfig.dart';
 import 'package:cybergarden_app/UI/configs/helpers.dart';
@@ -75,10 +75,24 @@ class CollectorsListState extends State<CollectorsList>{
                   builder: (context, AsyncSnapshot<List<CollectorModel>> snapshot){
                     if (snapshot.data !=null && snapshot.hasData){
                       return ListView(children: [
-                        for (var i in snapshot.data!) CollectorCard(collector: i,)
+                        for (var i in snapshot.data!) Container(
+                          margin: EdgeInsets.only(
+                            bottom: height*0.03
+                          ),
+                          child: CollectorCard(collector: i,),
+                        )
                       ],);
                     }else{
-                      return CircularProgressIndicator();
+                      return Center(
+
+                        child: Container(
+                          height: 24,
+                          width: 24,
+                          child: CircularProgressIndicator(
+                            color: UIIconColors.active,
+                          ),
+                        ),
+                      );
                     }
                   },
                 )
