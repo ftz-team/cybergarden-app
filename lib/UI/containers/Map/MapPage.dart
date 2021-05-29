@@ -1,11 +1,18 @@
+import 'dart:async';
+
 import 'package:cybergarden_app/UI/components/BottomSheets/CollectorBottomSheet.dart';
+import 'package:cybergarden_app/UI/components/CategoryCard.dart';
+import 'package:cybergarden_app/UI/components/buttons.dart';
 import 'package:cybergarden_app/UI/configs/UIConfig.dart';
+import 'package:cybergarden_app/UI/configs/helpers.dart';
 import 'package:cybergarden_app/UI/containers/Map/CollectorMarker.dart';
 import 'package:cybergarden_app/UI/containers/Map/CollectorsList.dart';
+import 'package:cybergarden_app/data/bloc/CollectorsBloc.dart';
 import 'package:cybergarden_app/data/models/CollectorModel.dart';
 import 'package:cybergarden_app/data/repository/collectorsApi.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:location/location.dart';
@@ -15,9 +22,19 @@ class MapPage extends StatefulWidget {
 }
 
 class MapPageState extends State<MapPage> {
+
+  List<CollectorModel> collectors = [];
+  late StreamSubscription _subscription;
   final List filters = ["Все", "Сбор бумаги", "Сбор батареек"];
   Set<Marker> _markers = {};
   int activeId = -1;
+  bool openedFilters = false;
+
+  toogleOpened(){
+    this.setState(() {
+      openedFilters = !openedFilters;
+    });
+  }
 
   late GoogleMapController mapController;
   String _mapStyle = "";
@@ -56,10 +73,8 @@ class MapPageState extends State<MapPage> {
     var pinLocationIconActive = await BitmapDescriptor.fromAssetImage(
         ImageConfiguration(devicePixelRatio: 2.5),
         'assets/collectorMarketActive.png');
-    var collectorsModels = await getCollectors();
+    var collectorsModels = collectors;
     collectorsModels.forEach((collectorModel) {
-      print(collectorModel);
-
       _markers.add(Marker(
           markerId: MarkerId(collectorModel.id.toString()),
           position: LatLng(collectorModel.point.lat, collectorModel.point.long),
@@ -87,6 +102,13 @@ class MapPageState extends State<MapPage> {
 
   @override
   void initState() {
+    _subscription = collectorsBloc.collectors.listen((data) {
+      this.setState(() {
+        collectors = data;
+      });
+      init();
+    });
+    collectorsBloc.loadCollectors();
     rootBundle.loadString('assets/map_style.txt').then((string) {
       this._mapStyle = string;
     });
@@ -95,6 +117,7 @@ class MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
+    collectorsBloc.setActive(0);
     return Scaffold(
       backgroundColor: UIColors.background,
       appBar: AppBar(
@@ -123,6 +146,7 @@ class MapPageState extends State<MapPage> {
       ),
       body: Stack(
         children: [
+
           GoogleMap(
             onMapCreated: _onMapCreated,
             markers: _markers,
@@ -131,9 +155,99 @@ class MapPageState extends State<MapPage> {
               zoom: 11.0,
             ),
             myLocationEnabled: true,
-          )
+          ),
+          Positioned(
+            top: 10,
+            left: 10,
+            height: 33,
+            width: displayWidth(context),
+            child:
+                   ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                            right: 10
+                        ),
+                        child: openedFilters?MiniGradientButton(
+                            child: Text(
+                              "Фильтры",
+                              style: TextStyle(
+                                color: Colors.white,
+
+                              ),
+                            ),
+                            onPressed: (){
+                              this.setState(() {
+                                toogleOpened();
+                              });
+                            }
+                        ):SecondaryButton(
+                            child: Text(
+                              "Фильтры",
+                              style: TextStyle(
+                                color: Colors.white,
+
+                              ),
+                            ),
+                            onPressed: (){
+                              this.setState(() {
+                                toogleOpened();
+                              });
+                            }
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                            right: 10
+                        ),
+                        child: SecondaryButton(
+                            child: Text(
+                              "Только избранные",
+                              style: TextStyle(
+                                color: Colors.white,
+
+                              ),
+                            ),
+                            onPressed: (){}
+                        ),
+                      )
+                    ],
+                  )
+          ),
+          Positioned(
+            top: 50,
+            left: 10,
+            height: 33,
+            width: displayWidth(context),
+            child: StreamBuilder(
+              stream: collectorsBloc.activeFilter,
+              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                if (snapshot.hasData){
+                  return ListView(
+                    scrollDirection: Axis.horizontal,
+                    children:openedFilters ?  [
+                      for (var filterName in filters) GestureDetector(
+                      onTap : (){
+                        collectorsBloc.setActive(filters.indexOf(filterName));
+                      },
+                      child:   CategoryCard(name: filterName, active: snapshot.data == filters.indexOf(filterName))
+                  )
+                    ]:[],
+                  );
+                }
+                return SizedBox();
+              },
+            ),
+          ) ,
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _subscription.cancel(); // don't forget to close subscription
+    super.dispose();
   }
 }

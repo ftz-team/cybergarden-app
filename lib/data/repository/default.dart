@@ -4,10 +4,10 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 Future<Dio> getApiClient() async {
 
   var _dio = Dio();
+  _dio.options.baseUrl = 'http://194.58.98.181/api';
 
   final storage = new FlutterSecureStorage();
 
-  _dio.options.baseUrl = 'https://www.xx.com/api';
 
   var token = await storage.read(key: "USER_TOKEN");
   _dio.interceptors.clear();

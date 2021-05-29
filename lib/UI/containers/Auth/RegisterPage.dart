@@ -14,6 +14,9 @@ class RegisterPage extends StatefulWidget {
 }
 
 class RegisterPageState extends State<RegisterPage> {
+
+  final snackBar = SnackBar(content: Text('Проверьте правильность введенного номера.', style: TextStyle(color: Colors.white),), backgroundColor: UIColors.background,);
+
   goNext(BuildContext context, int phone) async {
     var value = await sendCode(phone);
     if (value['ok']) {
@@ -23,6 +26,8 @@ class RegisterPageState extends State<RegisterPage> {
               builder: (context) => RecieveCodePage(
                 phone: phone,
               )));
+    }else{
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
 

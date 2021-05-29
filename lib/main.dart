@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<bool> init() async{
     final storage = new FlutterSecureStorage();
     var token = await storage.read(key: "USER_TOKEN");
-    print(token);
+
     if (null == token){
       return false;
     }
@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     super.initState();
     init().then((value) => this.setState(() {
-      print(value);
+
       if (value){
         Navigator.pushReplacement(context, new MaterialPageRoute(builder: (context) => AppNavigator()));
       }else{

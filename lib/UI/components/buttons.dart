@@ -119,3 +119,15 @@ Widget SecondaryButton(
               borderRadius: BorderRadius.all(Radius.circular(14))),
           padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15)));
 }
+
+Widget MiniGradientButton(
+    {required Widget child, required VoidCallback onPressed}) {
+  return InkWell(
+      onTap: onPressed,
+      child: Container(
+          child: child,
+          decoration: BoxDecoration(
+              gradient: UIGradients.Main,
+              borderRadius: BorderRadius.all(Radius.circular(14))),
+          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15)));
+}
