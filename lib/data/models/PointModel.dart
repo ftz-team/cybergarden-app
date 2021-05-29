@@ -1,6 +1,6 @@
 class PointModel{
 
-  final double long;
+    final double long;
    final  double lat;
 
   PointModel({
@@ -9,7 +9,7 @@ class PointModel{
   });
 
   PointModel.fromJson(Map<dynamic, dynamic> json):
-    long = json['long'],
-    lat = json['lat'];
+    long = double.parse(json['long']),
+    lat = double.parse(json['lat']);
 
 }

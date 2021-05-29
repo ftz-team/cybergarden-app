@@ -51,6 +51,7 @@ class NavigatorState extends State<AppNavigator> with TickerProviderStateMixin {
         ),
       body: PageView(
         controller: navController,
+        physics: NeverScrollableScrollPhysics(),
         onPageChanged: (int) {
           setState(() {
             active = int;

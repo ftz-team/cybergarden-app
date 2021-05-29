@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 
 class UIColors {
   static Color background = new Color(0xff181820);
-
+  static Color darkenBackground = new Color(0xff131319);
+  static Color secondary = new Color(0xff343442);
+  static Color cardBackground = new Color(0xff343442);
 }
 
 class UITextColors{

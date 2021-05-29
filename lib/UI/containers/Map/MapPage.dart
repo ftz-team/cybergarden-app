@@ -1,18 +1,98 @@
+import 'package:cybergarden_app/UI/components/BottomSheets/CollectorBottomSheet.dart';
 import 'package:cybergarden_app/UI/configs/UIConfig.dart';
+import 'package:cybergarden_app/UI/containers/Map/CollectorMarker.dart';
+import 'package:cybergarden_app/UI/containers/Map/CollectorsList.dart';
+import 'package:cybergarden_app/data/models/CollectorModel.dart';
+import 'package:cybergarden_app/data/repository/collectorsApi.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:location/location.dart';
 
-class MapPage extends StatefulWidget{
-  MapPageState createState()=>MapPageState();
+class MapPage extends StatefulWidget {
+  MapPageState createState() => MapPageState();
 }
 
-class MapPageState extends State<MapPage>{
+class MapPageState extends State<MapPage> {
+  final List filters = ["Все", "Сбор бумаги", "Сбор батареек"];
+  Set<Marker> _markers = {};
+  int activeId = -1;
+
   late GoogleMapController mapController;
+  String _mapStyle = "";
   final LatLng _center = const LatLng(45.521563, -122.677433);
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
+  Location _location = Location();
+
+  void onMarkerTap(CollectorModel collector) {
+
+    mapController.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+            target: LatLng(collector.point.lat, collector.point.long),
+            zoom: 15),
+      ),
+    );
+    this.setState(() {
+      activeId = collector.id;
+      init();
+    });
+    Future.delayed(const Duration(milliseconds: 1500), () {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(125.0),
+        ),
+        builder: (context){
+       return CollectorBottomSheet(context,collector);
+    });});
+        }
+
+  void init() async {
+    var pinLocationIcon = await BitmapDescriptor.fromAssetImage(
+        ImageConfiguration(devicePixelRatio: 2.5),
+        'assets/collectorMarket.png');
+    var pinLocationIconActive = await BitmapDescriptor.fromAssetImage(
+        ImageConfiguration(devicePixelRatio: 2.5),
+        'assets/collectorMarketActive.png');
+    var collectorsModels = await getCollectors();
+    collectorsModels.forEach((collectorModel) {
+      print(collectorModel);
+
+      _markers.add(Marker(
+          markerId: MarkerId(collectorModel.id.toString()),
+          position: LatLng(collectorModel.point.lat, collectorModel.point.long),
+          icon: activeId == collectorModel.id? pinLocationIconActive:pinLocationIcon,
+          onTap: () {
+            onMarkerTap(collectorModel);
+          }));
+    });
+    this.setState(() {
+      _markers = _markers;
+    });
   }
+
+  Future<void> _onMapCreated(GoogleMapController controller) async {
+    mapController = controller;
+    mapController.setMapStyle(_mapStyle);
+    var l = await _location.getLocation();
+    mapController.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(target: LatLng(l.latitude!, l.longitude!), zoom: 15),
+      ),
+    );
+    init();
+  }
+
+  @override
+  void initState() {
+    rootBundle.loadString('assets/map_style.txt').then((string) {
+      this._mapStyle = string;
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,22 +103,36 @@ class MapPageState extends State<MapPage>{
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             new Icon(
-                Icons.format_paint,
-                color: UIIconColors.active,
+              Icons.format_paint,
+              color: UIIconColors.active,
             ),
-            new Icon(
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    new CupertinoPageRoute(
+                        builder: (context) => CollectorsList()));
+              },
+              child: new Icon(
                 Icons.list,
                 color: UIIconColors.active,
+              ),
             )
           ],
         ),
       ),
-      body: GoogleMap(
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: _center,
-          zoom: 11.0,
-        ),
+      body: Stack(
+        children: [
+          GoogleMap(
+            onMapCreated: _onMapCreated,
+            markers: _markers,
+            initialCameraPosition: CameraPosition(
+              target: _center,
+              zoom: 11.0,
+            ),
+            myLocationEnabled: true,
+          )
+        ],
       ),
     );
   }

@@ -14,7 +14,8 @@ class UnicornOutlineButton extends StatelessWidget {
     required Gradient gradient,
     required Widget child,
     required VoidCallback onPressed,
-  })  : this._painter = _GradientPainter(strokeWidth: strokeWidth, radius: radius, gradient: gradient),
+  })  : this._painter = _GradientPainter(
+            strokeWidth: strokeWidth, radius: radius, gradient: gradient),
         this._child = child,
         this._callback = onPressed,
         this._radius = radius;
@@ -51,7 +52,10 @@ class _GradientPainter extends CustomPainter {
   final double strokeWidth;
   final Gradient gradient;
 
-  _GradientPainter({required double strokeWidth, required double radius, required Gradient gradient})
+  _GradientPainter(
+      {required double strokeWidth,
+      required double radius,
+      required Gradient gradient})
       : this.strokeWidth = strokeWidth,
         this.radius = radius,
         this.gradient = gradient;
@@ -60,11 +64,14 @@ class _GradientPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     // create outer rectangle equals size
     Rect outerRect = Offset.zero & size;
-    var outerRRect = RRect.fromRectAndRadius(outerRect, Radius.circular(radius));
+    var outerRRect =
+        RRect.fromRectAndRadius(outerRect, Radius.circular(radius));
 
     // create inner rectangle smaller by strokeWidth
-    Rect innerRect = Rect.fromLTWH(strokeWidth, strokeWidth, size.width - strokeWidth * 2, size.height - strokeWidth * 2);
-    var innerRRect = RRect.fromRectAndRadius(innerRect, Radius.circular(radius - strokeWidth));
+    Rect innerRect = Rect.fromLTWH(strokeWidth, strokeWidth,
+        size.width - strokeWidth * 2, size.height - strokeWidth * 2);
+    var innerRRect = RRect.fromRectAndRadius(
+        innerRect, Radius.circular(radius - strokeWidth));
 
     // apply gradient shader
     _paint.shader = gradient.createShader(outerRect);
@@ -80,25 +87,35 @@ class _GradientPainter extends CustomPainter {
   bool shouldRepaint(CustomPainter oldDelegate) => oldDelegate != this;
 }
 
-Widget DefaultButton({required Widget child,required VoidCallback onPressed,}){
+Widget DefaultButton({
+  required Widget child,
+  required VoidCallback onPressed,
+}) {
   return GestureDetector(
-    onTap: onPressed,
-    behavior: HitTestBehavior.translucent,
-    child: new Material(
-      color: Colors.black,
-      child: InkWell(
-        child: Container(
-          padding: EdgeInsets.symmetric(
-              vertical: 15
+      onTap: onPressed,
+      behavior: HitTestBehavior.translucent,
+      child: new Material(
+        color: Colors.black,
+        child: InkWell(
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 15),
+            decoration: BoxDecoration(
+                gradient: UIGradients.Main,
+                borderRadius: BorderRadius.all(Radius.circular(15))),
+            child: child,
           ),
-          decoration: BoxDecoration(
-              gradient: UIGradients.Main,
-              borderRadius: BorderRadius.all(Radius.circular(15))
-          ),
-          child: child,
         ),
-      ),
-    )
+      ));
+}
 
-  );
+Widget SecondaryButton(
+    {required Widget child, required VoidCallback onPressed}) {
+  return InkWell(
+    onTap: onPressed,
+      child: Container(
+          child: child,
+          decoration: BoxDecoration(
+              color: UIColors.secondary,
+              borderRadius: BorderRadius.all(Radius.circular(14))),
+          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15)));
 }
