@@ -24,6 +24,8 @@ class MapPage extends StatefulWidget {
 class MapPageState extends State<MapPage> {
   List<CollectorModel> collectors = [];
   late StreamSubscription _subscription;
+  late StreamSubscription _subscription2;
+
   final List filters = [
     'Все',
     'Для пластика',
@@ -115,6 +117,9 @@ class MapPageState extends State<MapPage> {
         collectors = data;
       });
       init();
+    });
+    _subscription2 = collectorsBloc.activeCollector.listen((data) {
+      onMarkerTap(data);
     });
     collectorsBloc.loadCollectors();
     rootBundle.loadString('assets/map_style.txt').then((string) {
@@ -252,6 +257,7 @@ class MapPageState extends State<MapPage> {
   @override
   void dispose() {
     _subscription.cancel();
+    _subscription2.cancel();
     super.dispose();
   }
 }

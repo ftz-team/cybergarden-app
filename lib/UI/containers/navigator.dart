@@ -37,8 +37,8 @@ class NavigatorState extends State<AppNavigator> with TickerProviderStateMixin {
           child: FloatingActionButton(
             child: InkWell(
               child: Container(
-                width: 60,
-                height: 60,
+                width: 80,
+                height: 80,
                 decoration: BoxDecoration(
                   gradient: UIGradients.Main,
                   shape: BoxShape.circle,
@@ -49,6 +49,7 @@ class NavigatorState extends State<AppNavigator> with TickerProviderStateMixin {
             onPressed: (){},
           ),
         ),
+
       body: PageView(
 
         controller: navController,
@@ -62,8 +63,10 @@ class NavigatorState extends State<AppNavigator> with TickerProviderStateMixin {
       ),
       bottomNavigationBar: BottomAppBar(
 
-        shape: CircularNotchedRectangle(),
-        notchMargin: width*0.11,
+        shape: CircularNotchedRectangle(
+
+        ),
+        notchMargin: 50,
 
         color: UIColors.background,
         child: Container(

@@ -21,12 +21,19 @@ class CollectorsBloc{
   final _collectorsFetcher = PublishSubject<List<CollectorModel>>();
   Stream<List<CollectorModel>> get collectors => _collectorsFetcher.stream;
 
+  final _activeCollector = PublishSubject<CollectorModel>();
+  Stream<CollectorModel> get activeCollector => _activeCollector.stream;
+
   loadCollectors() async{
     _collectors = await getCollectors(filtersApi[_active]);
 
     _collectorsFetcher.add(_collectors);
     _activeFilter.add(_active);
 
+  }
+
+  addActive(CollectorModel cly) {
+    _activeCollector.add(cly);
   }
 
   setActive(int active) async{

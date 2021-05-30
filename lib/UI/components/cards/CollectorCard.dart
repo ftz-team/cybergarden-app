@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cybergarden_app/UI/components/heading.dart';
 import 'package:cybergarden_app/UI/configs/UIConfig.dart';
 import 'package:cybergarden_app/UI/configs/helpers.dart';
+import 'package:cybergarden_app/data/bloc/CollectorsBloc.dart';
 import 'package:cybergarden_app/data/models/CollectorModel.dart';
 import 'package:flutter/material.dart';
 
@@ -12,27 +13,33 @@ class CollectorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: UIColors.cardBackground,
-        borderRadius: BorderRadius.all(
-          Radius.circular(20)
-        )
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          defaultHeader(collector.name),
-          Container(
-            margin: EdgeInsets.only(
-              top: 10,
-              bottom: 10
+    return GestureDetector(
+      onTap: (){
+        Navigator.pop(context);
+        collectorsBloc.addActive(collector);
+      },
+      child: Container(
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+            color: UIColors.cardBackground,
+            borderRadius: BorderRadius.all(
+                Radius.circular(20)
+            )
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            defaultHeader(collector.name),
+            Container(
+              margin: EdgeInsets.only(
+                  top: 10,
+                  bottom: 10
+              ),
+              child: CollectorAdress(),
             ),
-            child: CollectorAdress(),
-          ),
-          CollectorImage(image_url: collector.photo)
-        ],
+            CollectorImage(image_url: collector.photo)
+          ],
+        ),
       ),
     );
   }
