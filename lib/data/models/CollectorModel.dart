@@ -13,6 +13,7 @@ class CollectorModel{
   bool liked;
 
 
+
   CollectorModel.fromJson(Map json) :
       id = json['id'],
       name = json['name'],

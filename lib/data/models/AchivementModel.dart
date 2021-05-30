@@ -8,6 +8,6 @@ class AchivementModel{
 
   AchivementModel.fromJson(Map json) :
         header = json['header'],
-        photo = json['photo'],
+        photo = json['image'],
         description = json['description'];
 }

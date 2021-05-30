@@ -1,3 +1,4 @@
+import 'package:cybergarden_app/data/models/AchivementModel.dart';
 import 'package:cybergarden_app/data/models/CollectorModel.dart';
 import 'package:dio/dio.dart';
 
@@ -28,25 +29,45 @@ Future<dynamic> likeCollectorApi(String action , int id) async {
   return response;
 }
 
+
+Future<Map> checkInCollector(CollectorModel colletor) async{
+
+  Dio dio = await getApiClient();
+  var response = await dio.post("/visit/create", data: {
+    "collector_id" : colletor.id
+  });
+
+  if (response.statusCode == 200){
+    if (response.data['new_achievement']){
+      print({
+        "new_achievement": true,
+        "achievement": response.data['new_achievement_data']
+      });
+      return {
+        "new_achievement" : true,
+        "achievement" : response.data['new_achievement_data']
+      };
+    }
+
+    return response.data;
+  }
+
+  return response.data;
+
+}
+
+
 Future<List<CollectorModel>> loadHistory() async{
-  
-  return [
-    new CollectorModel.fromJson(
-        {
-          "id": 1,
-          "name": "Пункт номер 44",
-          "photo": "https://farm1.staticflickr.com/818/41215128032_c38295559b_b.jpg",
-          "description": "Приложение служит вашим проводником  в мир AR. Удобная навигация и интересный контент, недоступный многим.",
-          "long" :37.4219983,
-          "lat" : -122.084,
-          "point" : {
-            "long" :37.4219983,
-            "lat" : -122.084
-          },
-          "contact" : {},
-          "visited_count" : 21,
-          "liked" : false
-        }
-    )
-  ];
+
+  Dio dio = await getApiClient();
+
+  var res = await dio.get("/visit/history");
+
+  List<CollectorModel> ans = [];
+
+  res.data['data'].forEach((var el) => {
+    ans.add(CollectorModel.fromJson(el['collector'][0]))
+  });
+
+  return ans;
 }

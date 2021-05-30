@@ -60,7 +60,7 @@ class MapPageState extends State<MapPage> {
       activeId = collector.id;
       init();
     });
-    Future.delayed(const Duration(milliseconds: 1500), () {
+    Future.delayed(const Duration(milliseconds: 2000), () {
       showModalBottomSheet(
           context: context,
           isScrollControlled: true,
