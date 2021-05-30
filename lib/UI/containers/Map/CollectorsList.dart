@@ -1,4 +1,5 @@
 import 'package:cybergarden_app/UI/components/cards/CollectorCard.dart';
+import 'package:cybergarden_app/UI/components/cards/CollectorUpdated.dart';
 import 'package:cybergarden_app/UI/components/heading.dart';
 import 'package:cybergarden_app/UI/configs/UIConfig.dart';
 import 'package:cybergarden_app/UI/configs/helpers.dart';
@@ -22,20 +23,23 @@ class CollectorsListState extends State<CollectorsList>{
         automaticallyImplyLeading: false,
         backgroundColor : UIColors.background,
         elevation: 0.0,
-        title:Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children : [
-            InkWell(
-              onTap: (){
-                Navigator.pop(context);
-              },
-              child: new Icon(
-                Icons.arrow_back,
-                color : UIIconColors.active,
-              ),
-            ),
+        title:Container(
 
-          ]
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children : [
+                InkWell(
+                  onTap: (){
+                    Navigator.pop(context);
+                  },
+                  child: new Icon(
+                    Icons.arrow_back,
+                    color : UIIconColors.active,
+                  ),
+                ),
+
+              ]
+          ),
         ),
       ),
       body: Column(
@@ -64,11 +68,14 @@ class CollectorsListState extends State<CollectorsList>{
           Expanded(
             flex: 7,
             child: Container(
+                margin: EdgeInsets.only(
+                    top: 20
+                ),
                 width : width,
                 height : height,
                 padding : EdgeInsets.symmetric(
                     horizontal: 18,
-                    vertical: 30
+
                 ),
                 child : StreamBuilder(
                   stream : collectorsBloc.collectors,
@@ -79,7 +86,7 @@ class CollectorsListState extends State<CollectorsList>{
                           margin: EdgeInsets.only(
                             bottom: height*0.03
                           ),
-                          child: CollectorCard(collector: i,),
+                          child: CollectorUpdated(collectorModel: i,),
                         )
                       ],);
                     }else{

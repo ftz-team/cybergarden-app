@@ -51,12 +51,17 @@ Widget CollectorAdress({dynamic adress}) {
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
       Icon(
-          Icons.pin_drop,
+          Icons.location_pin,
           color: Colors.white,
       ),
-      Text(adress!=null ? adress : " Москва, Автозаводская ул., 18",
-          style: TextStyle(
-              color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400))
+      Container(
+        margin: EdgeInsets.only(
+          left: 10
+        ),
+        child: Text(adress!=null ? adress : " Москва, Автозаводская ул., 18",
+            style: TextStyle(
+                color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400)),
+      )
     ],
   ));
 }

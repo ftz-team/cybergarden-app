@@ -9,6 +9,7 @@ class CollectorModel{
   final PointModel point;
   final Map contact;
   final int visited_cnt;
+  String adress;
   bool liked;
 
 
@@ -23,6 +24,8 @@ class CollectorModel{
       }),
       contact = json['contact'],
       visited_cnt = json['visited_count'],
+      adress = json['adress'],
       liked = json['liked'];
+
 
 }

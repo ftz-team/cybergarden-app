@@ -11,6 +11,10 @@ import 'UI/containers/navigator.dart';
 import 'data/repository/default.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    systemNavigationBarColor: UIColors.background, // navigation bar color
+    statusBarColor: UIColors.background, // status bar color
+  ));
   final bool kReleaseMode = true;
 
   runApp(
@@ -53,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   Future<bool> init() async{
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = (prefs.getString('USER_TOKEN') ?? null);
     print(token);

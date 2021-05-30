@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:cybergarden_app/UI/components/navigation.dart';
 import 'package:cybergarden_app/UI/configs/UIConfig.dart';
 import 'package:cybergarden_app/UI/configs/helpers.dart';
+import 'package:cybergarden_app/data/bloc/NavigationBloc.dart';
 import 'package:cybergarden_app/data/enum/Pages.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +18,7 @@ class AppNavigator extends StatefulWidget {
 
 class NavigatorState extends State<AppNavigator> with TickerProviderStateMixin {
 
+  late StreamSubscription _subscription;
   int active = 0;
 
   List<Widget> pages = [
@@ -25,6 +29,17 @@ class NavigatorState extends State<AppNavigator> with TickerProviderStateMixin {
   ];
 
     PageController navController = PageController(initialPage: 0);
+
+    @override
+    void initState(){
+      _subscription = navigationBloc.tab.listen((data) {
+        this.setState(() {
+          active = data;
+        });
+        navController.jumpToPage(data);
+      });
+      super.initState();
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -138,5 +153,10 @@ class NavigatorState extends State<AppNavigator> with TickerProviderStateMixin {
         )
       )
     );
+  }
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
   }
 }
