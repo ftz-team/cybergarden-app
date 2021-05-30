@@ -71,6 +71,9 @@ class RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   Container(
+                    margin: EdgeInsets.only(
+                        top: 5
+                    ),
                     width: width,
                     child: UnicornOutlineButton(
                         child: Container(
@@ -151,6 +154,9 @@ class RegisterPageState extends State<RegisterPage> {
                         strokeWidth: 1),
                   ),
                   Container(
+                    margin: EdgeInsets.only(
+                      top: 5
+                    ),
                     width: width,
                     child: DefaultButton(
 

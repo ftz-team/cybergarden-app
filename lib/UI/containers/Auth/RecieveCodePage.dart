@@ -160,6 +160,9 @@ class RecieveCodePageState extends State<RecieveCodePage>{
                         strokeWidth: 1),
                   ),
                   Container(
+                    margin: EdgeInsets.only(
+                        top: 5
+                    ),
                     width: width,
                     child: UnicornOutlineButton(
                         child: Container(
@@ -203,6 +206,9 @@ class RecieveCodePageState extends State<RecieveCodePage>{
                         strokeWidth: 1),
                   ),
                   Container(
+                    margin: EdgeInsets.only(
+                        top: 5
+                    ),
                     width: width,
                     child: DefaultButton(
 

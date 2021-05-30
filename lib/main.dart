@@ -1,15 +1,24 @@
 import 'package:cybergarden_app/UI/configs/UIConfig.dart';
+import 'package:cybergarden_app/UI/containers/Splash.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:device_preview/device_preview.dart';
 import 'UI/containers/Auth/RegisterPage.dart';
 import 'UI/containers/LoadingScreen.dart';
 import 'UI/containers/navigator.dart';
 import 'data/repository/default.dart';
 
 void main() {
-  runApp(MyApp());
+  final bool kReleaseMode = true;
+
+  runApp(
+      DevicePreview(
+          enabled: !kReleaseMode,
+          builder: (context) =>MyApp()
+      )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -17,6 +26,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Мусорок',
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         primaryColor: UIColors.background,
@@ -69,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
       if (value){
         Navigator.pushReplacement(context, new MaterialPageRoute(builder: (context) => AppNavigator()));
       }else{
-        Navigator.pushReplacement(context, new MaterialPageRoute(builder: (context) => RegisterPage()));
+        Navigator.pushReplacement(context, new MaterialPageRoute(builder: (context) => SplashPage()));
       }
     }));
 
@@ -78,6 +89,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return LoadingScreen();
+    return SplashPage();
   }
 }

@@ -1,10 +1,13 @@
 import 'package:cybergarden_app/UI/components/buttons.dart';
 import 'package:cybergarden_app/UI/configs/UIConfig.dart';
 import 'package:cybergarden_app/UI/configs/helpers.dart';
+import 'package:cybergarden_app/UI/containers/Splash.dart';
+import 'package:cybergarden_app/data/repository/authApi.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'AchievementsPage.dart';
+import 'VisitedHistoryPage.dart';
 
 class ProfilePage extends StatefulWidget {
   ProfilePageState createState() => ProfilePageState();
@@ -75,11 +78,17 @@ class ProfilePageState extends State<ProfilePage> {
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.w500)),
-                      Text("Выйти",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700))
+                      GestureDetector(
+                        onTap: (){
+                          logout();
+                          Navigator.pushReplacement(context, new MaterialPageRoute(builder: (context) => SplashPage()));
+                        },
+                        child: Text("Выйти",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700)),
+                      )
                     ],
                   ),
                 ),
@@ -99,10 +108,15 @@ class ProfilePageState extends State<ProfilePage> {
                   icon :Icons.settings_outlined,
                   text: "Настройки"
                 ),
-                menuItem(
-                    context,
-                    icon :Icons.hiking_outlined,
-                    text: "История посещений"
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, new CupertinoPageRoute(builder: (context)=>HitoryPage()));
+                  },
+                  child: menuItem(
+                      context,
+                      icon :Icons.hiking_outlined,
+                      text: "История посещений"
+                  ),
                 ),
                 GestureDetector(
                   onTap: (){

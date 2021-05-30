@@ -48,25 +48,9 @@ class AchivementCard extends StatelessWidget{
                   margin: EdgeInsets.symmetric(
                       vertical: 15
                   ),
-                  child:             Text(
-                    achivement.header,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18
-                    ),
-                  )
+                  child: miniHeader(achivement.header)
               ),
-              Text(
-                achivement.description,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w300,
-                    fontSize: 12
-                ),
-              )
+              plainText(achivement.description)
             ],
           ),
         ),

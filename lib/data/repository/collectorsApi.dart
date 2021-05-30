@@ -27,3 +27,26 @@ Future<dynamic> likeCollectorApi(String action , int id) async {
   var response = await dio.get("/collector/add_to_favourites?action="+action+"&id="+id.toString(), );
   return response;
 }
+
+Future<List<CollectorModel>> loadHistory() async{
+  
+  return [
+    new CollectorModel.fromJson(
+        {
+          "id": 1,
+          "name": "Пункт номер 44",
+          "photo": "https://farm1.staticflickr.com/818/41215128032_c38295559b_b.jpg",
+          "description": "Приложение служит вашим проводником  в мир AR. Удобная навигация и интересный контент, недоступный многим.",
+          "long" :37.4219983,
+          "lat" : -122.084,
+          "point" : {
+            "long" :37.4219983,
+            "lat" : -122.084
+          },
+          "contact" : {},
+          "visited_count" : 21,
+          "liked" : false
+        }
+    )
+  ];
+}

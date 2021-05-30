@@ -12,3 +12,39 @@ Widget defaultHeader(String text,{FontWeight fontWeight = FontWeight.bold, Color
       textAlign :textAlign
   );
 }
+
+Widget miniHeader(String text){
+  return Text(
+    text,
+    textAlign: TextAlign.center,
+    style: TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.w700,
+        fontSize: 22
+    ),
+  );
+}
+
+Widget plainText(String text, {TextAlign align = TextAlign.center}){
+  return Text(
+    text,
+    textAlign: align,
+    style: TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.w500,
+        fontSize: 14
+    ),
+
+  );
+}
+
+Widget subHeader(String text){
+  return Text(
+    text,
+    style: TextStyle(
+      color: Colors.white,
+      fontSize: 16,
+      fontWeight: FontWeight.w400
+    ),
+  );
+}
