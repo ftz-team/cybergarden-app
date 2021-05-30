@@ -5,13 +5,13 @@ import 'package:dio/dio.dart';
 import '../dateHelpers.dart';
 import 'default.dart';
 
-Future<List<CollectorModel>> getCollectors(String filter) async{
+Future<List<CollectorModel>> getCollectors(String filter, {String offline = "false"}) async{
 
 
 
   Dio dio = await getApiClient();
 
-  var response = await dio.get("/collector/get?type="+filter, );
+  var response = await dio.get("/collector/get?type="+filter+"&is_offline="+offline, );
 
   if (response.statusCode == 200){
     List<CollectorModel> res= [];
