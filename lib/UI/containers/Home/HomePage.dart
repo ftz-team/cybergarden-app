@@ -1,6 +1,11 @@
+import 'package:cybergarden_app/UI/components/buttons.dart';
+import 'package:cybergarden_app/UI/components/cards/CollectorCard.dart';
 import 'package:cybergarden_app/UI/components/cards/CollectorUpdated.dart';
 import 'package:cybergarden_app/UI/components/heading.dart';
 import 'package:cybergarden_app/UI/configs/UIConfig.dart';
+import 'package:cybergarden_app/UI/containers/Home/HomeExtPage.dart';
+import 'package:cybergarden_app/data/bloc/CollectorsBloc.dart';
+import 'package:cybergarden_app/data/bloc/NavigationBloc.dart';
 import 'package:cybergarden_app/data/models/CollectorModel.dart';
 import 'package:cybergarden_app/data/repository/collectorsApi.dart';
 import 'package:flutter/cupertino.dart';
@@ -62,7 +67,60 @@ class HomePageState extends State<HomePage>{
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               children: [
-                for (var i in collectors) CollectorUpdated(collectorModel: i,),
+                for (var collectorModel in collectors) GestureDetector(
+                  onTap :(){
+                    Navigator.pop(context);
+                    collectorsBloc.addActive(collectorModel);
+                  },
+                  child: Container(
+                    child: UnicornOutlineButton(
+                        strokeWidth: 1,
+                        radius: 18,
+                        gradient: UIGradients.Main,
+                        onPressed: (){
+                          Navigator.push(context, new CupertinoPageRoute(builder: (context) => HomeExtPage(collectorModel: collectorModel)));
+                        },
+                        child: Container(
+                          width: 350,
+                          padding: EdgeInsets.all(20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                child: miniHeader(collectorModel.name),
+                                margin: EdgeInsets.only(
+                                    bottom: 10
+                                ),
+                              ),
+                              CollectorAdress(adress: collectorModel.adress),
+                              Container(
+                                child: plainText(collectorModel.description, align: TextAlign.left),
+                                margin: EdgeInsets.only(
+                                    top: 10,
+                                    bottom: 10
+                                ),
+                              ),
+                              Container(
+                                width: 350,
+                                height: 85,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(20))
+                                ),
+                                child: CollectorImage(
+                                  image_url: collectorModel.photo,
+                                ),
+                              ),
+
+
+                            ],
+                          ),
+                        )
+                    ),
+                    margin: EdgeInsets.only(
+                        bottom: 20
+                    ),
+                  ),
+                ),
 
               ],
             )

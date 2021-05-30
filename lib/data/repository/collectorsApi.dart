@@ -67,9 +67,9 @@ Future<List<CollectorModel>> loadHistory() async{
   List<CollectorModel> ans = [];
 
   res.data['data'].forEach((var el) => {
-    ans.add(CollectorModel.fromJson(el['collector'][0])
+    ans.add(CollectorModel.fromJson(el['collector'])
     ),
-    ans[-1].visited_at = getDateTimeFromDjango(el['date'])
+    ans[ans.length-1].visited_at = getDateTimeFromDjango(el['date'])
 
   });
 

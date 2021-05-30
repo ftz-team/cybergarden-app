@@ -35,7 +35,7 @@ class CollectorCard extends StatelessWidget {
                   top: 10,
                   bottom: 10
               ),
-              child: CollectorAdress(),
+              child: CollectorAdress(adress: collector.adress),
             ),
             CollectorImage(image_url: collector.photo)
           ],

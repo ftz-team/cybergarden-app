@@ -31,7 +31,7 @@ class RegisterPageState extends State<RegisterPage> {
                 phone: phone,
               )));
     }else{
-      print("!!!!");
+
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }

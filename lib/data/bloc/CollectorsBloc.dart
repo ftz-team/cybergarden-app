@@ -33,7 +33,8 @@ class CollectorsBloc{
   }
 
   addActive(CollectorModel cly) {
-    _activeCollector.add(cly);
+
+    _activeCollector.sink.add(cly);
   }
 
   setActive(int active) async{

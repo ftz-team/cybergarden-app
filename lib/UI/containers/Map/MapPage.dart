@@ -21,7 +21,7 @@ class MapPage extends StatefulWidget {
   MapPageState createState() => MapPageState();
 }
 
-class MapPageState extends State<MapPage> {
+class MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin  {
   List<CollectorModel> collectors = [];
   late StreamSubscription _subscription;
   late StreamSubscription _subscription2;
@@ -60,7 +60,7 @@ class MapPageState extends State<MapPage> {
       activeId = collector.id;
       init();
     });
-    Future.delayed(const Duration(milliseconds: 2000), () {
+    Future.delayed(const Duration(milliseconds: 2100), () {
       showModalBottomSheet(
           context: context,
           isScrollControlled: true,
@@ -260,4 +260,7 @@ class MapPageState extends State<MapPage> {
     _subscription2.cancel();
     super.dispose();
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

@@ -4,6 +4,7 @@ import 'package:cybergarden_app/UI/components/cards/CollectorUpdated.dart';
 import 'package:cybergarden_app/UI/components/heading.dart';
 import 'package:cybergarden_app/UI/configs/UIConfig.dart';
 import 'package:cybergarden_app/UI/configs/helpers.dart';
+import 'package:cybergarden_app/data/dateHelpers.dart';
 import 'package:cybergarden_app/data/models/AchivementModel.dart';
 import 'package:cybergarden_app/data/models/CollectorModel.dart';
 import 'package:cybergarden_app/data/repository/achivementsApi.dart';
@@ -84,16 +85,19 @@ class HitoryPageState extends State<HitoryPage>{
           Expanded(
             flex: 7,
             child: Container(
+              margin: EdgeInsets.only(
+                top: 20
+              ),
                 width : width,
                 height : height,
                 padding : EdgeInsets.symmetric(
                     horizontal: 18,
-                    vertical: 30
+
                 ),
                 child : ListView(
                   shrinkWrap: true,
                   children: [
-                    for (var i in collectors) CollectorUpdated(collectorModel: i, date: i.visited_at.toString(),),
+                    for (var i in collectors) CollectorUpdated(collectorModel: i, date: dmy(i.visited_at!)+","+normalS(i.visited_at!),),
                     collectors.length == 0 ? plc() : SizedBox()
                   ],
                 )

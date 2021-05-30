@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = (prefs.getString('USER_TOKEN') ?? null);
-    print(token);
+
 
     if (null == token){
       return false;
