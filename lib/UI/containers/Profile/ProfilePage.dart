@@ -127,6 +127,9 @@ class ProfilePageState extends State<ProfilePage> {
                       icon :Icons.scatter_plot_outlined,
                       text: "Достижения"
                   ),
+                ),
+                GestureDetector(
+                  child: menuItem(context, icon: Icons.loyalty, text: "Промокоды"),
                 )
 
               ],

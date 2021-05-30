@@ -12,6 +12,7 @@ class CollectorModel{
   String adress;
   bool liked;
   DateTime? visited_at;
+  bool is_offline;
 
 
 
@@ -27,6 +28,7 @@ class CollectorModel{
       contact = json['contact'],
       visited_cnt = json['visited_count'],
       adress = json['adress'],
+        is_offline = json["is_offline"],
       liked = json['liked'];
 
 
