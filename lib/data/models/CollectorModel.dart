@@ -11,6 +11,7 @@ class CollectorModel{
   final int visited_cnt;
   String adress;
   bool liked;
+  DateTime? visited_at;
 
 
 
@@ -27,6 +28,7 @@ class CollectorModel{
       visited_cnt = json['visited_count'],
       adress = json['adress'],
       liked = json['liked'];
+
 
 
 }

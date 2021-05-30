@@ -2,6 +2,7 @@ import 'package:cybergarden_app/data/models/AchivementModel.dart';
 import 'package:cybergarden_app/data/models/CollectorModel.dart';
 import 'package:dio/dio.dart';
 
+import '../dateHelpers.dart';
 import 'default.dart';
 
 Future<List<CollectorModel>> getCollectors(String filter) async{
@@ -66,7 +67,10 @@ Future<List<CollectorModel>> loadHistory() async{
   List<CollectorModel> ans = [];
 
   res.data['data'].forEach((var el) => {
-    ans.add(CollectorModel.fromJson(el['collector'][0]))
+    ans.add(CollectorModel.fromJson(el['collector'][0])
+    ),
+    ans[-1].visited_at = getDateTimeFromDjango(el['date'])
+
   });
 
   return ans;

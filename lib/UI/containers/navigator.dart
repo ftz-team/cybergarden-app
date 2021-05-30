@@ -7,6 +7,7 @@ import 'package:cybergarden_app/data/bloc/NavigationBloc.dart';
 import 'package:cybergarden_app/data/enum/Pages.dart';
 import 'package:flutter/material.dart';
 
+import 'Courses/CoursesPage.dart';
 import 'Home/HomePage.dart';
 import 'Map/MapPage.dart';
 import 'Profile/ProfilePage.dart';
@@ -26,6 +27,7 @@ class NavigatorState extends State<AppNavigator> with TickerProviderStateMixin {
     MapPage(),
     ProfilePage(),
     ProfilePage(),
+    CoursesPage(),
   ];
 
     PageController navController = PageController(initialPage: 0);
@@ -61,7 +63,9 @@ class NavigatorState extends State<AppNavigator> with TickerProviderStateMixin {
                 child: const Icon(Icons.map),
               ),
             ),
-            onPressed: (){},
+            onPressed: (){
+              navController.jumpToPage(1);
+            },
           ),
         ),
 
@@ -88,8 +92,9 @@ class NavigatorState extends State<AppNavigator> with TickerProviderStateMixin {
           decoration: BoxDecoration(
             color: UIColors.background
           ),
-          padding: EdgeInsets.symmetric(
-            vertical: 15
+          padding: EdgeInsets.only(
+            top: 10,
+            bottom: 5
           ),
           child: new Row(
             mainAxisSize: MainAxisSize.max,
@@ -97,26 +102,11 @@ class NavigatorState extends State<AppNavigator> with TickerProviderStateMixin {
             children: <Widget>[
               Expanded(
                 flex: 4 ,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    GestureDetector(
-                      onTap: (){
-                        navController.jumpToPage(0);
-                      },
-                      child: 0!=active?NavItem("assets/home.svg" ,):NavItem.active("assets/home.svg" , ),
-                    ),
-
-                    GestureDetector(
-                      onTap: () {
-                        navController.jumpToPage(1);
-                      },
-                      child: 1 != active ? NavItem(
-                          "assets/star.svg") : NavItem
-                          .active(
-                        "assets/star.svg",),
-                    ),
-                  ],
+                child:                     GestureDetector(
+                  onTap: (){
+                    navController.jumpToPage(0);
+                  },
+                  child: 0!=active?NavItem("assets/home.svg" ,):NavItem.active("assets/home.svg" , ),
                 ),
               ),
               Expanded(
@@ -125,27 +115,11 @@ class NavigatorState extends State<AppNavigator> with TickerProviderStateMixin {
               ),
               Expanded(
                 flex: 4 ,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    GestureDetector(
-                      onTap: (){
-                        navController.jumpToPage(2);
-                      },
-                      child: 2!=active?NavItem("assets/profile.svg" , ):NavItem.active("assets/profile.svg" , ),
-                    ),
-                    GestureDetector(
-                      onTap: (){
-                        navController.jumpToPage(3);
-                      },
-                      child: 3 != active
-                          ? NavItem("assets/profile.svg",
-                      )
-                          : NavItem.active(
-                        "assets/profile.svg",
-                      ),
-                    ),
-                  ],
+                child:                    GestureDetector(
+                  onTap: (){
+                    navController.jumpToPage(2);
+                  },
+                  child: 2!=active?NavItem("assets/profile.svg" , ):NavItem.active("assets/profile.svg" , ),
                 ),
               )
             ],

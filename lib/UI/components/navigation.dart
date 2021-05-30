@@ -17,8 +17,10 @@ class NavItem extends StatelessWidget{
   Widget build(BuildContext context) {
     return Container(
       child: SvgPicture.asset(
+
           asset,
         color: active ? UIIconColors.active : UIIconColors.disabled,
+        width: 55,
       ),
     );
   }

@@ -93,7 +93,7 @@ class HitoryPageState extends State<HitoryPage>{
                 child : ListView(
                   shrinkWrap: true,
                   children: [
-                    for (var i in collectors) CollectorUpdated(collectorModel: i),
+                    for (var i in collectors) CollectorUpdated(collectorModel: i, date: i.visited_at.toString(),),
                     collectors.length == 0 ? plc() : SizedBox()
                   ],
                 )
