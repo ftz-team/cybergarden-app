@@ -1,6 +1,6 @@
 ## Musorok - решение билзко
 
-[https://vk.com/feed?q=%23%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B0%D1%8F%D0%9F%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%B0&section=search](#ТвориДобро) [https://vk.com/feed?q=%23%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B0%D1%8F%D0%9F%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%B0&section=search](#БольшаяПеремена)
+[https://shorturl.at/zNY03](#ТвориДобро) [shorturl.at/zNY03](#БольшаяПеремена)
 
 ### О чем мы?
 
