@@ -1,37 +1,30 @@
-## Welcome to GitHub Pages
+## Musorok - решение билзко
 
-You can use the [editor on GitHub](https://github.com/ftz-team/cybergarden-app/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+#ТвориДобро #БольшаяПеремена
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### О чем мы?
 
-### Markdown
+Далеко не каждый в нашей стране знает, насколько важно сдавать мусор, а у тех, кто знает до сих пор нет удобного инструмента для получение информации о местах сбора мусора. Как решить эту **проблему**? Этим вопросом была озадачена наша команда на одном из недавних хакатонов. 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Мы разработали сервис, в котором магазины-партнеры могут размещать информацию о точках раздельного сбора мусора. Магазин размещает точку сбора и вознаграждает, например, скидкой на товары пользователя, который воспользуется точкой.
 
-```markdown
-Syntax highlighted code block
+**Зачем магазину размещать пункт сбора мусора?**
+- Привлечение новых клиентов
+- Поддержка эко-движений в моде
 
-# Header 1
-## Header 2
-### Header 3
+**Что получает пользователь?**
+- Мотивацию заниматься экологической деятельностью
+- Удобный сервис с точками сбора мусора рядом
 
-- Bulleted
-- List
+### В заключение:
+Все творят добро по-разному, мы используем технологии, чтобы делать это максимально эффективно. Мы думаем, что musorok сможет сделать наш мир более чистым. 
 
-1. Numbered
-2. List
+### Демонстрация работы:
+https://drive.google.com/file/d/1t3djXvPG-cQO_LCe9XLOPchz0vU3zJ7X/view?usp=sharing
 
-**Bold** and _Italic_ and `Code` text
+### Команда FTZ:
+[https://github.com/misterbobot](Зайцев Тимофей)
+[https://github.com/abakunov](Абакунов Кирилл)
 
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ftz-team/cybergarden-app/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### Contact US:
+Email: contact@ftz.team
