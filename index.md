@@ -26,9 +26,8 @@
 [https://www.canva.com/design/DAEf8hgSwJY/w6yIY1cN_ugD0gOULg_5YQ/view?utm_content=DAEf8hgSwJY&utm_campaign=designshare&utm_medium=link&utm_source=viewer](https://www.canva.com/design/DAEf8hgSwJY/w6yIY1cN_ugD0gOULg_5YQ/view?utm_content=DAEf8hgSwJY&utm_campaign=designshare&utm_medium=link&utm_source=viewer)
 
 ### Команда FTZ:
-[Зайцев Тимофей](https://github.com/misterbobot)
-
-[Абакунов Кирилл](https://github.com/abakunov)
+- [Зайцев Тимофей](https://github.com/misterbobot)
+- [Абакунов Кирилл](https://github.com/abakunov)
 
 ### Contact US:
 Email: contact@ftz.team
