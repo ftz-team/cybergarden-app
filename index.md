@@ -20,7 +20,10 @@
 Все творят добро по-разному, мы используем технологии, чтобы делать это максимально эффективно. Мы думаем, что musorok сможет сделать наш мир более чистым. 
 
 ### Демонстрация работы:
-https://drive.google.com/file/d/1t3djXvPG-cQO_LCe9XLOPchz0vU3zJ7X/view?usp=sharing
+[https://drive.google.com/file/d/1t3djXvPG-cQO_LCe9XLOPchz0vU3zJ7X/view?usp=sharing](https://drive.google.com/file/d/1t3djXvPG-cQO_LCe9XLOPchz0vU3zJ7X/view?usp=sharing)
+
+### Презентация проекта:
+[https://www.canva.com/design/DAEf8hgSwJY/w6yIY1cN_ugD0gOULg_5YQ/view?utm_content=DAEf8hgSwJY&utm_campaign=designshare&utm_medium=link&utm_source=viewer](https://www.canva.com/design/DAEf8hgSwJY/w6yIY1cN_ugD0gOULg_5YQ/view?utm_content=DAEf8hgSwJY&utm_campaign=designshare&utm_medium=link&utm_source=viewer)
 
 ### Команда FTZ:
 [Зайцев Тимофей](https://github.com/misterbobot)
