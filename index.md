@@ -1,6 +1,6 @@
 ## Musorok - решение билзко
 
-[https://shorturl.at/zNY03](#ТвориДобро) [shorturl.at/zNY03](#БольшаяПеремена)
+[#ТвориДобро](https://shorturl.at/zNY03) [#БольшаяПеремена](https://shorturl.at/zNY03)
 
 ### О чем мы?
 
@@ -23,8 +23,8 @@
 https://drive.google.com/file/d/1t3djXvPG-cQO_LCe9XLOPchz0vU3zJ7X/view?usp=sharing
 
 ### Команда FTZ:
-[https://github.com/misterbobot](Зайцев Тимофей)
-[https://github.com/abakunov](Абакунов Кирилл)
+[Зайцев Тимофей](https://github.com/misterbobot)
+[Абакунов Кирилл](https://github.com/abakunov)
 
 ### Contact US:
 Email: contact@ftz.team
