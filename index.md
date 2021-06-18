@@ -20,7 +20,7 @@
 Все творят добро по-разному, мы используем технологии, чтобы делать это максимально эффективно. Мы думаем, что musorok сможет сделать наш мир более чистым. 
 
 ### Демонстрация работы:
-[https://drive.google.com/file/d/1t3djXvPG-cQO_LCe9XLOPchz0vU3zJ7X/view?usp=sharing](https://drive.google.com/file/d/1t3djXvPG-cQO_LCe9XLOPchz0vU3zJ7X/view?usp=sharing)
+[https://www.canva.com/link?target=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1hrpA5J_ccfbzx-H50lTUw-v8fPfkpkm5%2Fview%3Fusp%3Dsharing&design=DAEf8hgSwJY](https://www.canva.com/link?target=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1hrpA5J_ccfbzx-H50lTUw-v8fPfkpkm5%2Fview%3Fusp%3Dsharing&design=DAEf8hgSwJY)
 
 ### Презентация проекта:
 [https://www.canva.com/design/DAEf8hgSwJY/w6yIY1cN_ugD0gOULg_5YQ/view?utm_content=DAEf8hgSwJY&utm_campaign=designshare&utm_medium=link&utm_source=viewer](https://www.canva.com/design/DAEf8hgSwJY/w6yIY1cN_ugD0gOULg_5YQ/view?utm_content=DAEf8hgSwJY&utm_campaign=designshare&utm_medium=link&utm_source=viewer)
