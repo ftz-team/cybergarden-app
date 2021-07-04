@@ -30,7 +30,7 @@ class NavigatorState extends State<AppNavigator> with TickerProviderStateMixin {
     CoursesPage(),
   ];
 
-    PageController navController = PageController(initialPage: 0);
+    PageController navController = PageController(initialPage: 1);
 
     @override
     void initState(){

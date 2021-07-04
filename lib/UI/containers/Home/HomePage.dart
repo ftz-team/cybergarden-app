@@ -94,7 +94,7 @@ class HomePageState extends State<HomePage>{
                               ),
                               CollectorAdress(adress: collectorModel.adress),
                               Container(
-                                child: plainText(collectorModel.description, align: TextAlign.left),
+                                child: plainText(collectorModel.description.length<40?collectorModel.description:collectorModel.description.substring(0,39)+"...", align: TextAlign.left),
                                 margin: EdgeInsets.only(
                                     top: 10,
                                     bottom: 10

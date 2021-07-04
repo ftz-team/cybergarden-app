@@ -12,7 +12,7 @@ class CollectorModel{
   String adress;
   bool liked;
   DateTime? visited_at;
-  bool is_offline;
+  bool? is_offline;
 
 
 

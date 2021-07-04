@@ -274,12 +274,16 @@ Widget _buildPopupDialogAchivement(BuildContext context, Map json) {
                           ),
                         ),
                         Container(
+                          width: 200,
                             margin: EdgeInsets.symmetric(
                                 vertical: 15
                             ),
                             child: miniHeader(json['header'])
                         ),
-                        plainText(json['description'])
+                        Container(
+                          width: 200,
+                          child: plainText(json['description']),
+                        )
                       ],
                     ),
                   ),

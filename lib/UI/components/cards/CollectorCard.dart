@@ -31,6 +31,7 @@ class CollectorCard extends StatelessWidget {
           children: [
             defaultHeader(collector.name),
             Container(
+              width: 250,
               margin: EdgeInsets.only(
                   top: 10,
                   bottom: 10
@@ -47,21 +48,27 @@ class CollectorCard extends StatelessWidget {
 
 Widget CollectorAdress({dynamic adress}) {
   return Container(
+
       child: Row(
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
-      Icon(
-          Icons.location_pin,
-          color: Colors.white,
-      ),
-      Container(
-        margin: EdgeInsets.only(
-          left: 10
-        ),
-        child: Text(adress!=null ? adress : " Москва, Автозаводская ул., 18",
-            style: TextStyle(
-                color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400)),
-      )
+      Expanded(
+        flex: 1,
+        child: Icon(
+        Icons.location_pin,
+        color: Colors.white,
+      ),),
+      Expanded(
+        flex: 8,
+        child:       Container(
+          margin: EdgeInsets.only(
+              left: 10
+          ),
+          child: Text(adress!=null ? adress : " Москва, Автозаводская ул., 18",
+              style: TextStyle(
+                  color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400)),
+        ),),
+
     ],
   ));
 }
