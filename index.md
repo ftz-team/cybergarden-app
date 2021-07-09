@@ -1,6 +1,6 @@
 ## Musorok - решение близко
 
-[#ТвориДобро](https://shorturl.at/zNY03) [#БольшаяПеремена](https://shorturl.at/zNY03)
+
 
 ### О чем мы?
 
