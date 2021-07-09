@@ -16,8 +16,6 @@
 - Мотивацию заниматься экологической деятельностью
 - Удобный сервис с точками сбора мусора рядом
 
-### В заключение:
-Все творят добро по-разному, мы используем технологии, чтобы делать это максимально эффективно. Мы думаем, что musorok сможет сделать наш мир более чистым. 
 
 ### Демонстрация работы:
 [https://www.canva.com/link?target=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1hrpA5J_ccfbzx-H50lTUw-v8fPfkpkm5%2Fview%3Fusp%3Dsharing&design=DAEf8hgSwJY](https://www.canva.com/link?target=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1hrpA5J_ccfbzx-H50lTUw-v8fPfkpkm5%2Fview%3Fusp%3Dsharing&design=DAEf8hgSwJY)
