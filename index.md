@@ -1,27 +1,24 @@
-## Musorok - решение близко
+## Musorok - the closest solution
 
 
 
-### О чем мы?
+### About
 
-Далеко не каждый в нашей стране знает, насколько важно сдавать мусор, а у тех, кто знает до сих пор нет удобного инструмента для получение информации о местах сбора мусора. Как решить эту **проблему**? Этим вопросом была озадачена наша команда на одном из недавних хакатонов. 
+Not everyone in our country knows how important it is to recycle the garbage, and those who know still do not have a convenient tool to get information about the collection sites. How to solve this problem? This question has puzzled our team on one of the recent hackathons.
 
-Мы разработали сервис, в котором магазины-партнеры могут размещать информацию о точках раздельного сбора мусора. Магазин размещает точку сбора и вознаграждает, например, скидкой на товары пользователя, который воспользуется точкой.
+We have developed a service in which partners magazines can post information about garbage collection points. The store places a collection point and rewards, for example, with a discount on the goods of the user who uses the point.
 
-**Зачем магазину размещать пункт сбора мусора?**
-- Привлечение новых клиентов
-- Поддержка эко-движений в моде
+**Why would a magazine place a garbage collection point?**
+- Attracting new customers
+- Support for eco-movements
 
-**Что получает пользователь?**
-- Мотивацию заниматься экологической деятельностью
-- Удобный сервис с точками сбора мусора рядом
+**Users advantages?**
+- Motivation to engage in environmental activities
+- Convenient service with garbage collection points nearby
 
 
-### Демонстрация работы:
+### Demo:
 [https://www.canva.com/link?target=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1hrpA5J_ccfbzx-H50lTUw-v8fPfkpkm5%2Fview%3Fusp%3Dsharing&design=DAEf8hgSwJY](https://www.canva.com/link?target=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1hrpA5J_ccfbzx-H50lTUw-v8fPfkpkm5%2Fview%3Fusp%3Dsharing&design=DAEf8hgSwJY)
-
-### Презентация проекта:
-[https://www.canva.com/design/DAEf8hgSwJY/w6yIY1cN_ugD0gOULg_5YQ/view?utm_content=DAEf8hgSwJY&utm_campaign=designshare&utm_medium=link&utm_source=viewer](https://www.canva.com/design/DAEf8hgSwJY/w6yIY1cN_ugD0gOULg_5YQ/view?utm_content=DAEf8hgSwJY&utm_campaign=designshare&utm_medium=link&utm_source=viewer)
 
 ### Команда FTZ:
 - [Зайцев Тимофей](https://github.com/misterbobot)
