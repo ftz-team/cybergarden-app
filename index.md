@@ -20,9 +20,9 @@ We have developed a service in which partners magazines can post information abo
 ### Demo:
 [https://www.canva.com/link?target=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1hrpA5J_ccfbzx-H50lTUw-v8fPfkpkm5%2Fview%3Fusp%3Dsharing&design=DAEf8hgSwJY](https://www.canva.com/link?target=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1hrpA5J_ccfbzx-H50lTUw-v8fPfkpkm5%2Fview%3Fusp%3Dsharing&design=DAEf8hgSwJY)
 
-### Команда FTZ:
-- [Зайцев Тимофей](https://github.com/misterbobot)
-- [Абакунов Кирилл](https://github.com/abakunov)
+### Team FTZ:
+- [Zaytsev Timofey](https://github.com/misterbobot)
+- [Abakunov Kirill](https://github.com/abakunov)
 
 ### Contact US:
 Email: contact@ftz.team
