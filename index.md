@@ -6,7 +6,7 @@
 
 Not everyone in our country knows how important it is to recycle the garbage, and those who know still do not have a convenient tool to get information about the collection sites. How to solve this problem? This question has puzzled our team on one of the recent hackathons.
 
-We have developed a service in which partners magazines can post information about garbage collection points. The store places a collection point and rewards, for example, with a discount on the goods of the user who uses the point.
+We've developed a service in which partners magazines can post information about garbage collection points. The store places a collection point and rewards, for example, with a discount on the goods of the user who uses the point.
 
 **Why would a magazine place a garbage collection point?**
 - Attracting new customers
